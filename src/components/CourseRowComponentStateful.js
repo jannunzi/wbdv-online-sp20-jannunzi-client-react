@@ -31,7 +31,7 @@ class CourseRowComponentStateful extends React.Component {
             <li className={`list-group-item ${this.state.active?'active':''}`}>
                 {
                     !this.state.active &&
-                        <Link to="/course-editor">
+                        <Link to={`/course-editor/${this.state.course._id}`}>
                             {this.state.course.title}
                         </Link>
                 }

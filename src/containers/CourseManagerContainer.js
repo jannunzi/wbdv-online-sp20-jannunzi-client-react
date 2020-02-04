@@ -152,7 +152,7 @@ class CourseManagerContainer extends React.Component {
                                 showEditor={this.showEditor}
                                 editCourse={this.editCourse}/>                        }/>
                     <Route
-                        path="/course-editor"
+                        path="/course-editor/:courseId"
                         exact={true}
                         render={() =>
                             <CourseEditorComponent
