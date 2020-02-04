@@ -3,12 +3,12 @@ import ModuleList from "./ModuleList";
 import LessonTabs from "./LessonTabs";
 import {Link} from "react-router-dom";
 
-const CourseEditorComponent = ({hideEditor}) =>
+const CourseEditorComponent = ({hideEditor, match}) =>
     <div>
         <Link to="/">
             Back
         </Link>
-    <h3>Course Editor</h3>
+    <h3>Course Editor {match.params.courseId}</h3>
         <div className="row">
             <div className="col-3">
                 <ModuleList modules={[
