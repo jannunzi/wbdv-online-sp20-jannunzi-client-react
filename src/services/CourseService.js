@@ -1,23 +1,27 @@
-class CourseService {
-	createCourse = (course) => {
-		return fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses", {
-			method: 'POST',
-			body: JSON.stringify(course),
-			headers: {
-				'content-type': 'application/json'
-			}
-		}).then(response => response.json())
-	}
-	findAllCourses = () => {
-		return fetch("https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses")
-			.then(response => response.json())
-	}
-	deleteCourse = (courseId) => {
-		return fetch(`https://wbdv-generic-server.herokuapp.com/api/jannunzi/courses/${courseId}`, {
-			method: 'DELETE'
-		})
-		.then(response => response.json())
-	}
+import {API_URL} from "../common/constants";
+
+export const createCourse = async (course) => {
+	let response = await fetch(API_URL, {
+		method: 'POST',
+		body: JSON.stringify(course),
+		headers: {
+			'content-type': 'application/json'
+		}
+	})
+	return await response.json()
 }
 
-export default CourseService;
+export const findAllCourses = async () => {
+	let response = await fetch(API_URL)
+	return await response.json()
+}
+
+export const deleteCourse = async (courseId) => {
+	let response = await fetch(`${API_URL}/${courseId}`, {
+		method: 'DELETE'
+	})
+	return await response.json()
+}
+// }
+
+// export default CourseService;

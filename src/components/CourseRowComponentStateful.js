@@ -5,7 +5,8 @@ class CourseRowComponentStateful extends React.Component {
         super(props)
     }
     state = {
-        active: false
+        active: false,
+        course: this.props.course
     }
     editCourse = () => {
         this.setState(prevState => ({
@@ -17,16 +18,34 @@ class CourseRowComponentStateful extends React.Component {
             active: !prevState.active
         }))
     }
-    updateForm = (e) => {}
+    updateForm = (e) => {
+        this.setState({
+            course: {
+                title: e.target.value
+            }
+        })
+    }
     render() {
         return(
-            <li className={`list-group-item ${this.state.active?'active':''}`}
-                onClick={() => this.editCourse()}>
-                {!this.state.active && this.props.course.title}
-                {this.state.active && <input onChange={this.updateForm} value={this.props.course.title}/>}
+            <li className={`list-group-item ${this.state.active?'active':''}`}>
+                {
+                    !this.state.active &&
+                    <a onClick={this.props.showEditor} href="#">
+                        {this.state.course.title}
+                    </a>
+                }
+                {
+                    this.state.active &&
+                    <input
+                        onChange={this.updateForm}
+                        value={this.state.course.title}/>
+                }
+                {
+                    !this.state.active &&
+                    <button onClick={() => this.editCourse()}>edit</button>
+                }
                 {
                     this.state.active && <span>
-                        <button>edit</button>
                         <button onClick={(event) => this.props.deleteCourse(this.props.course)}>Delete</button>
                         <button onClick={() => this.saveCourse()}>save</button>
                     </span>
