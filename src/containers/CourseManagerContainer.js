@@ -9,6 +9,7 @@ import CourseEditorComponent from "../components/CourseEditorComponent";
 // const courseService = new CourseService()
 
 import {createCourse, findAllCourses, deleteCourse} from '../services/CourseService'
+import CourseListComponent from "../components/CourseListComponent";
 
 
 class CourseManagerContainer extends React.Component {
@@ -135,29 +136,16 @@ class CourseManagerContainer extends React.Component {
 
                 {
                     !this.state.showEditor &&
-                        <div>
-                        <CourseHeadingComponent/>
-                        <input
-                        onChange={this.updateFormState}
-                        value={this.state.newCourseTitle}
-                        placeholder="New Course Title"/>
-                        <button onClick={this.addCourse}>Add</button>
-                        <button onClick={this.toggle}>Toggle</button>
-                    {
-                        this.state.layout === "grid" &&
-                        <CourseGridComponent
-                        deleteCourse={this.deleteCourse}
-                        courses={this.state.courses}/>
-                    }
-                    {
-                        this.state.layout === "table"  &&
-                        <CourseTableComponent
+                        <CourseListComponent
+                            updateFormState={this.updateFormState}
+                            newCourseTitle={this.state.newCourseTitle}
+                            addCourse={this.addCourse}
+                            toggle={this.toggle}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}
+                            layout={this.state.layout}
                             showEditor={this.showEditor}
-                        editCourse={this.editCourse}
-                        deleteCourse={this.deleteCourse}
-                        courses={this.state.courses}/>
-                    }
-                        </div>
+                            editCourse={this.editCourse}/>
                 }
             </div>
         );
