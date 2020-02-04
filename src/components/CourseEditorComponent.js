@@ -1,10 +1,13 @@
 import React from "react";
 import ModuleList from "./ModuleList";
 import LessonTabs from "./LessonTabs";
+import {Link} from "react-router-dom";
 
 const CourseEditorComponent = ({hideEditor}) =>
     <div>
-        <button onClick={hideEditor}>Close</button>
+        <Link to="/">
+            Back
+        </Link>
     <h3>Course Editor</h3>
         <div className="row">
             <div className="col-3">

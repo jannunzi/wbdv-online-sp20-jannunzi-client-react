@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class CourseRowComponentStateful extends React.Component {
     constructor(props) {
@@ -30,9 +31,9 @@ class CourseRowComponentStateful extends React.Component {
             <li className={`list-group-item ${this.state.active?'active':''}`}>
                 {
                     !this.state.active &&
-                    <a onClick={this.props.showEditor} href="#">
-                        {this.state.course.title}
-                    </a>
+                        <Link to="/course-editor">
+                            {this.state.course.title}
+                        </Link>
                 }
                 {
                     this.state.active &&
