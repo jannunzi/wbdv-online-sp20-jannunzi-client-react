@@ -132,32 +132,35 @@ class CourseManagerContainer extends React.Component {
                 <h1>Course Manager</h1>
 
                 <Router>
-                    <Link to="/page1">Page 1</Link>
-                    <Link to="/page2">Page 2</Link>
+                    {/*<Link to="/page1">Page 1</Link>*/}
+                    {/*<Link to="/page2">Page 2</Link>*/}
+                    {/*<Route path="/page1" component={Page1}/>*/}
+                    {/*<Route path="/page2" component={Page2}/>*/}
 
-                    <Route path="/page1" component={Page1}/>
-                    <Route path="/page2" component={Page2}/>
+                    <Route
+                        path="/"
+                        exact={true}
+                        render={() =>
+                            <CourseListComponent
+                                updateFormState={this.updateFormState}
+                                newCourseTitle={this.state.newCourseTitle}
+                                addCourse={this.addCourse}
+                                toggle={this.toggle}
+                                deleteCourse={this.deleteCourse}
+                                courses={this.state.courses}
+                                layout={this.state.layout}
+                                showEditor={this.showEditor}
+                                editCourse={this.editCourse}/>                        }/>
+                    <Route
+                        path="/course-editor"
+                        exact={true}
+                        render={() =>
+                            <CourseEditorComponent
+                                hideEditor={this.hideEditor}/>
+                        }/>
+
+
                 </Router>
-
-                {
-                    this.state.showEditor &&
-                    <CourseEditorComponent
-                        hideEditor={this.hideEditor}/>
-                }
-
-                {
-                    !this.state.showEditor &&
-                        <CourseListComponent
-                            updateFormState={this.updateFormState}
-                            newCourseTitle={this.state.newCourseTitle}
-                            addCourse={this.addCourse}
-                            toggle={this.toggle}
-                            deleteCourse={this.deleteCourse}
-                            courses={this.state.courses}
-                            layout={this.state.layout}
-                            showEditor={this.showEditor}
-                            editCourse={this.editCourse}/>
-                }
             </div>
         );
     }
