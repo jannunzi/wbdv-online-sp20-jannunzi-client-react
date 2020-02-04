@@ -11,6 +11,9 @@ import CourseEditorComponent from "../components/CourseEditorComponent";
 import {createCourse, findAllCourses, deleteCourse} from '../services/CourseService'
 import CourseListComponent from "../components/CourseListComponent";
 
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import Page1 from "../components/Page1";
+import Page2 from "../components/Page2";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -127,6 +130,14 @@ class CourseManagerContainer extends React.Component {
         return (
             <div className="container-fluid">
                 <h1>Course Manager</h1>
+
+                <Router>
+                    <Link to="/page1">Page 1</Link>
+                    <Link to="/page2">Page 2</Link>
+
+                    <Route path="/page1" component={Page1}/>
+                    <Route path="/page2" component={Page2}/>
+                </Router>
 
                 {
                     this.state.showEditor &&
