@@ -17,10 +17,10 @@ const CourseEditorComponent = ({hideEditor, match, courseId, history}) =>
         <div className="row">
             <div className="col-3">
                 <ModuleList modules={[
-                    {title: 'Course A'},
-                    {title: 'Course B'},
-                    {title: 'Course C'},
-                    {title: 'Course D'}
+                    {title: 'Module A'},
+                    {title: 'Module B'},
+                    {title: 'Module C'},
+                    {title: 'Module D'}
                 ]}/>
             </div>
             <div className="col-9">
