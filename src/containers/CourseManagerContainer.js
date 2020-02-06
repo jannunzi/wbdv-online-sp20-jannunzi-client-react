@@ -1,15 +1,15 @@
 import React from 'react'
-import CourseHeadingComponent from "../components/CourseHeadingComponent";
-import CourseTableComponent from "../components/CourseTableComponent";
-import CourseGridComponent from "../components/CourseGridComponent";
+import CourseHeadingComponent from "../components/courseList/CourseHeadingComponent";
+import CourseTableComponent from "../components/courseList/CourseTableComponent";
+import CourseGridComponent from "../components/courseList/CourseGridComponent";
 // import CourseService from "../services/CourseService";
-import ModuleList from "../components/ModuleList";
-import CourseEditorComponent from "../components/CourseEditorComponent";
+import ModuleList from "../components/courseEditor/ModuleList";
+import CourseEditorComponent from "../components/courseEditor/CourseEditorComponent";
 
 // const courseService = new CourseService()
 
 import {createCourse, findAllCourses, deleteCourse} from '../services/CourseService'
-import CourseListComponent from "../components/CourseListComponent";
+import CourseListComponent from "../components/courseList/CourseListComponent";
 
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Page1 from "../components/Page1";
@@ -155,7 +155,7 @@ class CourseManagerContainer extends React.Component {
                         path="/course-editor/:courseId"
                         exact={true}
                         render={(props) =>
-                            <CourseEditorComponent
+                                <CourseEditorComponent
                                 {...props}
                                 courseId={props.match.params.courseId}
                                 hideEditor={this.hideEditor}/>
