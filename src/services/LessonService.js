@@ -1,7 +1,7 @@
-import {MODULES_LESSONS_API_URL} from "../common/constants";
+import {LESSONS_API_URL, MODULES_LESSONS_API_URL} from "../common/constants";
 
 export const findLessonsForModule = (moduleId) =>
-    fetch(`http://localhost:4000/api/jannunzi/module/${moduleId}/lessons`)
+    fetch(`https://wbdv-generic-server.herokuapp.com/api/jannunzi/module/${moduleId}/lessons`)
         .then(response => response.json())
 
 export const createLesson = (moduleId, lesson) =>
@@ -12,3 +12,15 @@ export const createLesson = (moduleId, lesson) =>
             'content-type': 'application/json'
         }
     }).then(response => response.json())
+
+export const updateLesson = async (lesson) =>
+{
+    const response = await fetch(`${LESSONS_API_URL}/${lesson._id}`, {
+        method: 'PUT',
+        body: JSON.stringify(lesson),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        return await response.json()
+}

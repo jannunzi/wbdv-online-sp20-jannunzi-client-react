@@ -8,7 +8,7 @@ export default class ModuleListComponent extends React.Component {
     }
 
     state = {
-        activeModuleId: '',
+        activeModuleId: this.props.moduleId,
         editingModuleId: ''
     }
 
@@ -18,12 +18,21 @@ export default class ModuleListComponent extends React.Component {
                 {
                     this.props.modules && this.props.modules.map(module =>
                         <ModuleListItem
-                            edit={() => this.setState({
-                                editingModuleId: module._id
-                            })}
-                            select={() => this.setState({
-                                activeModuleId: module._id
-                            })}
+                            key={module._id}
+                            edit={() => {
+                                const moduleId = module._id
+                                this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`)
+                                this.setState({
+                                    editingModuleId: module._id
+                                })
+                            }}
+                            select={() => {
+                                const moduleId = module._id
+                                this.props.history.push(`/course-editor/${this.props.courseId}/module/${moduleId}`)
+                                this.setState({
+                                    activeModuleId: module._id
+                                })
+                            }}
                             save={() => this.setState({
                                 editingModuleId: ''
                             })}
@@ -33,7 +42,7 @@ export default class ModuleListComponent extends React.Component {
                 }
                 <li className="list-group-item">
                     <button onClick={
-                        () => this.props.createModule(this.props.courseId)
+                        () => this.props.createModule(this.props.courseId, {title: 'New Module'})
                     }>
                         Add
                     </button>

@@ -23,7 +23,7 @@ const ModuleListItem = ({save, edit, editing, module, deleteModule, active, sele
         </button>}
     </li>
 
-const stateToPropertyMapper = (state) => {}
+const stateToPropertyMapper = (state) => ({})
 const dispatchToPropertyMapper = (dispatch) => ({
     deleteModule: (moduleId) => {
         fetch(`${MODULES_API_URL}/${moduleId}`, {
