@@ -1,5 +1,9 @@
 import {CREATE_MODULE, FIND_MODULES_FOR_COURSE} from "../actions/moduleActions";
 
+
+// (state A) == action 1 ==> (state B)
+// (state A) == action 2 ==> (state C)
+
 const moduleReducer = (state, action) => {
     switch(action.type) {
         case CREATE_MODULE:

@@ -1,11 +1,7 @@
 import React from "react";
 import ModuleListItem from "./ModuleListItem";
-import {connect} from "react-redux";
-import {COURSES_MODULES_API_URL} from "../../common/constants";
-import {createModule, findModuleForCourse} from "../../services/ModuleService";
-import {CREATE_MODULE, FIND_MODULES_FOR_COURSE, findModulesForCourse} from "../../actions/moduleActions";
 
-class ModuleList extends React.Component {
+export default class ModuleListComponent extends React.Component {
 
     componentDidMount() {
         this.props.findModulesForCourse(this.props.courseId)
@@ -47,20 +43,3 @@ class ModuleList extends React.Component {
     }
 }
 
-export default connect(
-    (state) => ({
-        modules: state.modules.modules
-    }),
-    (dispatch) => ({
-        createModule: (courseId) => {
-            createModule(courseId, {title: 'New Module'})
-                .then(actualModule =>
-                    dispatch(createModule(actualModule)))
-        },
-        findModulesForCourse: (courseId) => {
-            findModuleForCourse(courseId)
-                .then(modules =>
-                    dispatch(findModulesForCourse(modules)))
-        }
-    })
-)(ModuleList)

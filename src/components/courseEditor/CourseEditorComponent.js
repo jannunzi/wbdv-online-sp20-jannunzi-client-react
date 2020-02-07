@@ -1,11 +1,12 @@
 import React from "react";
-import ModuleList from "./ModuleList";
+import ModuleList from "./ModuleListComponent";
 import LessonTabs from "./LessonTabs";
 import {Link} from "react-router-dom";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import modules from '../../reducers/modules'
 import lessons from '../../reducers/lessons'
+import ModuleListContainer from "../../containers/ModuleListContaner";
 
 const reducers = combineReducers({
     modules, lessons
@@ -26,10 +27,10 @@ const CourseEditorComponent = ({hideEditor, match, courseId, history}) =>
             </Link>
             <h3>Course Editor {courseId}</h3>
             <div className="row">
-                <div className="col-5">
-                    <ModuleList courseId={courseId}/>
+                <div className="col-3">
+                    <ModuleListContainer courseId={courseId}/>
                 </div>
-                <div className="col-7">
+                <div className="col-9">
                     <LessonTabs/>
                     {/*<TopicPills/>*/}
                     {/*<WidgetList/>*/}
