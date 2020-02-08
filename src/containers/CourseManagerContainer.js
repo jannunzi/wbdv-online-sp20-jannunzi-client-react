@@ -150,7 +150,8 @@ class CourseManagerContainer extends React.Component {
                                 courses={this.state.courses}
                                 layout={this.state.layout}
                                 showEditor={this.showEditor}
-                                editCourse={this.editCourse}/>                        }/>
+                                editCourse={this.editCourse}/>
+                        }/>
                     <Route
                         path="/course-editor/:courseId"
                         exact={true}
@@ -166,6 +167,17 @@ class CourseManagerContainer extends React.Component {
                         render={(props) =>
                             <CourseEditorComponent
                                 {...props}
+                                moduleId={props.match.params.moduleId}
+                                courseId={props.match.params.courseId}
+                                hideEditor={this.hideEditor}/>
+                        }/>
+                    <Route
+                        path="/course-editor/:courseId/module/:moduleId/lesson/:lessonId"
+                        exact={true}
+                        render={(props) =>
+                            <CourseEditorComponent
+                                {...props}
+                                lessonId={props.match.params.lessonId}
                                 moduleId={props.match.params.moduleId}
                                 courseId={props.match.params.courseId}
                                 hideEditor={this.hideEditor}/>
