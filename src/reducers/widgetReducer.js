@@ -9,6 +9,10 @@ const widgetReducer = (state = {
     widgets: widgets
 }, action) => {
     switch (action.type) {
+        case "WIDGET_FOR_TOPIC":
+            return {
+                widgets: action.widgets
+            }
         case "ADD_WIDGET":
             return {
                 widgets: [

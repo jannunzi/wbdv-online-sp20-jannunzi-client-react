@@ -1,3 +1,16 @@
+export const findWidgetsForTopic = (topicd) =>
+    fetch(`http://localhost:8080/topics/${topicd}/widgets/`)
+        .then(response => response.json())
+
+export const updateWidget = (wid, widget) =>
+    fetch(`http://localhost:8080/widgets/${wid}`, {
+        method: "PUT",
+        body: JSON.stringify(widget),
+        headers: {
+            'content-type': "application/json"
+        }
+    }).then(response => response.json())
+
 export const findAllWidgets = () =>
     fetch("http://localhost:8080/widgets")
         .then(response => response.json())

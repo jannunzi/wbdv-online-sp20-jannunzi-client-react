@@ -2,33 +2,43 @@ import React from "react";
 import {connect} from "react-redux";
 import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/PararagraphWidget";
-import {findAllWidgets, createWidget, deleteWidget} from "../../services/WidgetService";
+import {
+    findAllWidgets,
+    createWidget,
+    deleteWidget,
+    updateWidget,
+    findWidgetsForTopic
+} from "../../services/WidgetService";
 
 class WidgetList extends React.Component {
     componentDidMount() {
-        this.props.findAllWidgets();
+        this.props.findWidgetsForTopic(this.props.topicId);
+        // this.props.findAllWidgets();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.topicId !== this.props.topicId) {
+            this.props.findWidgetsForTopic(this.props.topicId);
+        }
     }
 
     render(){
         return(
-            <ul>
+            <div>
                 {
                     this.props.widgets && this.props.widgets.map(widget =>
-                        <li key={widget.id}>
-                            {widget.type === "HEADING" && <HeadingWidget widget={widget}/>}
+                        <div key={widget.id}>
+                            {widget.type === "HEADING"   && <HeadingWidget   {...this.props} widget={widget}/>}
                             {widget.type === "PARAGRAPH" && <ParagraphWidget widget={widget}/>}
-                            <button onClick={() => this.props.deleteWidget(widget.id)}>
-                                Delete
-                            </button>
-                        </li>
+                        </div>
                     )
                 }
-                <li>
+                <div>
                     <button onClick={this.props.createWidget}>
                         Create Widget
                     </button>
-                </li>
-            </ul>
+                </div>
+            </div>
         )
     }
 }
@@ -38,10 +48,22 @@ const stateToPropertyMapper = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatcher) => ({
+    findWidgetsForTopic: (topicId) =>
+        findWidgetsForTopic(topicId)
+            .then(widgets => dispatcher({
+                type: "WIDGET_FOR_TOPIC",
+                widgets: widgets
+            })),
+    updateWidget: (widgetId, newWidget) =>
+        updateWidget(widgetId, newWidget)
+            .then(status => dispatcher({
+                type: "UPDATE",
+                widget: newWidget
+            })),
     deleteWidget: (widgetId) =>
         deleteWidget(widgetId)
             .then(status => dispatcher({
-                type: 'DELETE',
+                type: 'DELETE_WIDGET',
                 widgetId: widgetId
             })),
     createWidget: () =>

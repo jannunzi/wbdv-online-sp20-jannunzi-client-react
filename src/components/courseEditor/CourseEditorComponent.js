@@ -39,7 +39,7 @@ const CourseEditorComponent = ({hideEditor, match, courseId, moduleId, history})
                     <LessonTabs
                         moduleId={moduleId}/>
                     {/*<TopicPills/>*/}
-                    <WidgetList/>
+                    <WidgetList topicId={111}/>
                 </div>
             </div>
         </div>
