@@ -2,21 +2,21 @@ import React from "react";
 
 class HeadingWidget extends React.Component {
     state = {
-        editing: false,
+        editing: this.props.editing,
         widget: this.props.widget
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.editing !== this.props.editing) {
+            this.setState({
+                editing: this.props.editing
+            })
+        }
+    }
+
     render () {
         return(
             <div>
-                {
-                    !this.state.editing &&
-                    <button className="float-right" onClick={() =>
-                        this.setState({
-                            editing: true
-                        })}>
-                        Edit
-                    </button>
-                }
                 {
                     !this.state.editing &&
                     <div>
@@ -55,23 +55,14 @@ class HeadingWidget extends React.Component {
                                     <option value={3}>Heading 3</option>
                                     <option value={4}>Heading 4</option>
                                 </select>
-                            <button onClick={() => {
-                                this.setState(prevState => {
-                                    this.props.updateWidget(this.state.widget.id, this.state.widget);
-                                    return {
-                                        editing: false
-                                    }
-                                })
-                            }}>
-                                Save
-                            </button>
-                            <button onClick={() => {
-                                this.props.deleteWidget(this.props.widget.id)
-                            }}>
-                                Delete
-                            </button>
-                            <button>Up</button>
-                            <button>Down</button>
+                                    <button onClick={
+                                        () =>
+                                        {
+                                            this.props.saveWidget(this.state.widget)
+                                        }}>
+                                        Save
+                                    </button>
+
                                 </span>
                         </div>
                 }
