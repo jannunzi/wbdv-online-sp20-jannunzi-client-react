@@ -14,6 +14,8 @@ import CourseListComponent from "../components/courseList/CourseListComponent";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Page1 from "../components/Page1";
 import Page2 from "../components/Page2";
+import Prototype from "../components/prototype/Prototype";
+import MovieDetails from "../components/prototype/MovieDetails";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -129,13 +131,25 @@ class CourseManagerContainer extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <h1>Course Manager</h1>
-
                 <Router>
                     {/*<Link to="/page1">Page 1</Link>*/}
                     {/*<Link to="/page2">Page 2</Link>*/}
                     {/*<Route path="/page1" component={Page1}/>*/}
                     {/*<Route path="/page2" component={Page2}/>*/}
+
+                    <Route
+                        path="/prototype"
+                        exact={true}
+                        component={Prototype}/>
+
+                    <Route
+                        path="/prototype/:latestTitleSearch"
+                        exact={true}
+                        component={Prototype}/>
+
+                    <Route
+                        path={`/prototype/movies/:imdbID`}
+                        component={MovieDetails}/>
 
                     <Route
                         path="/"

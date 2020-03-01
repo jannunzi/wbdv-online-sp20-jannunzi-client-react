@@ -38,8 +38,9 @@ class WidgetList extends React.Component {
     render(){
         return(
             <div>
+                <h1>{this.props.topicId}</h1>
                 {
-                    this.props.widgets && this.props.widgets.map(widget =>
+                    this.props.widgets && this.props.widgets.length > 0 && this.props.widgets.map(widget =>
                         <div key={widget.id}>
                             {widget.type === "HEADING"   && <HeadingWidget   saveWidget={this.saveWidget} editing={this.state.widget.id === widget.id} {...this.props} widget={widget}/>}
                             {widget.type === "PARAGRAPH" && <ParagraphWidget updateWidget={this.updateWidget} editing={this.state.widget.id === widget.id} widget={widget}/>}
@@ -122,11 +123,9 @@ const dispatchToPropertyMapper = (dispatcher) => ({
                 widgetId: widgetId
             })),
     createWidget: (topicId) =>
-        createWidget({
+        createWidget(topicId, {
             title: "New Widget",
-            type: "HEADING",
-            topicId: topicId,
-            id: (new Date()).getTime() + ""
+            type: "HEADING"
         })
             .then(actualWidget => dispatcher({
                 type: "ADD_WIDGET",

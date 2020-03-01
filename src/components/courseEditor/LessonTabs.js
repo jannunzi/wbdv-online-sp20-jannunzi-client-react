@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {LESSONS_API_URL, MODULES_LESSONS_API_URL} from "../../common/constants";
 import {updateLesson} from "../../services/LessonService";
+import {Link} from "react-router-dom";
 
 class LessonTabs extends React.Component {
 
@@ -34,7 +35,8 @@ class LessonTabs extends React.Component {
                                 selectedLessonId: lesson._id
                             })}
                             key={lesson._id}>
-                            <a className={`nav-link
+                            <Link to={`/course-editor/${this.props.courseId}/module/${this.props.moduleId}/lesson/${lesson._id}`}
+                                  className={`nav-link
                                             ${(this.state.editingLessonId === lesson._id || this.state.selectedLessonId === lesson._id)?'active':''}`}>
                                 {this.state.editingLessonId !== lesson._id &&
                                 <span>{lesson.title}</span>}
@@ -74,7 +76,7 @@ class LessonTabs extends React.Component {
                                 }}>
                                     Edit
                                 </button>
-                            </a>
+                            </Link>
                         </li>)
                 }
                 <li className="nav-item">
